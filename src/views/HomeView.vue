@@ -204,6 +204,7 @@ export default {
   width: 200px;
   height: 200px;
   border-radius: 20px 20px 0 0;
+  object-fit: cover;
 }
 .premiumUsersTextContainer {
   display: flex;
