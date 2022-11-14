@@ -53,6 +53,7 @@
         <img
           :src="featuredServiceProvider.image1"
           alt="nihire featured services"
+          class="topDawgIMG"
         />
 
         <div class="rightItems">
@@ -141,7 +142,7 @@ export default {
 
 <style>
 .usersContainer {
-  width: 75%;
+  width: 70%;
   /* background: gray; */
   float: right;
   margin: 0 20px 0 0;
@@ -217,24 +218,32 @@ export default {
   box-shadow: rgb(236, 236, 236) 5px 5px 5px;
   cursor: pointer;
 }
+.categoriesItem p {
+  font-size: 12px;
+  font-weight: 800;
+}
 .topDawgsSection {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  width: 100%;
+  align-items: center;
 }
+
 .topDawgItem {
   height: 180px;
-  width: 450px;
+  width: 420px;
   border-radius: 0 20px 20px 0;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   background: rgb(237, 251, 255);
   margin: 0 20px 20px 0;
   box-shadow: rgb(223, 223, 223) 5px 5px 5px;
+  cursor: pointer;
 }
-.topDawgItem img {
+.topDawgIMG {
   height: 100%;
   width: 180px;
 }
@@ -242,16 +251,13 @@ export default {
   font-size: 14px;
   text-align: left;
   margin: 10px 0 0 0;
+  color: rgb(115, 115, 115);
 }
 .rightItems {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-around;
-  flex: 1;
-  height: 100%;
-  width: 100%;
-  padding: 20px;
+  padding: 10px;
 }
 .locationAndPrice {
   display: flex;
@@ -272,6 +278,7 @@ export default {
 .serviceNameText {
   color: rgb(138, 0, 166);
   font-weight: 800;
+  font-size: 14px;
 }
 .nameAndStars p {
   font-weight: 800;
