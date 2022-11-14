@@ -5,7 +5,11 @@
   </nav> -->
 
   <div class="leftNav">
-    <h1>niHire</h1>
+    <img
+      class="niHireLogo"
+      src="./assets/nihire-icon-font.png"
+      alt="ni-hire-logo"
+    />
 
     <div class="toProfileDiv">
       <img
@@ -46,10 +50,10 @@
 </template>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Nunito&display=swap");
 
 #app {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Nunito", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -72,9 +76,12 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+.niHireLogo {
+  margin: 20px 0;
+}
 .leftNav {
   width: 20%;
-  background: rgb(243, 253, 255);
+  background: rgb(28, 28, 28);
   height: 100%;
   position: fixed;
   box-shadow: rgb(238, 238, 238) 5px 5px 5px;
@@ -106,7 +113,7 @@ nav a.router-link-exact-active {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: solid 1px rgb(237, 237, 237);
+  border-bottom: solid 1px rgb(74, 74, 74);
   cursor: pointer;
 }
 .nameAndTitle {
@@ -116,6 +123,7 @@ nav a.router-link-exact-active {
 }
 .iconAndNavText p {
   font-weight: 700;
+  color: white;
 }
 .name {
   font-weight: 800;

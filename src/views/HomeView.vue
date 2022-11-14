@@ -1,5 +1,9 @@
 <template>
   <div class="usersContainer">
+    <div class="searchContainer">
+      <input type="text" placeholder="Search a service" />
+    </div>
+
     <div class="topText">
       <p class="subTitleText">Top service providers</p>
       <p class="viewAllText">View all</p>
@@ -145,6 +149,15 @@ export default {
 </script>
 
 <style>
+.searchContainer {
+  margin: 40px 0;
+}
+.searchContainer input {
+  height: 50px;
+  width: 95%;
+  border-radius: 10px;
+  padding: 0 20px;
+}
 .usersContainer {
   width: 70%;
   /* background: gray; */
@@ -270,8 +283,8 @@ export default {
   align-items: center;
   width: 100%;
 }
-.nameAndStars {
-}
+/* .nameAndStars {
+} */
 .locationText {
   color: rgb(0, 164, 164);
   font-weight: 800;
