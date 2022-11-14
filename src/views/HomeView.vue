@@ -1,18 +1,280 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="usersContainer">
+    <div class="topText">
+      <p class="subTitleText">Top service providers</p>
+      <p class="viewAllText">View all</p>
+    </div>
+
+    <div class="topUsers">
+      <div
+        v-for="premiumUser in premiumUsers"
+        :key="premiumUser._id"
+        class="featUser"
+      >
+        <img
+          :src="
+            premiumUser.profilePicture ? premiumUser.profilePicture : noImage
+          "
+          alt="premium service providers"
+        />
+
+        <div class="premiumUsersTextContainer">
+          <p class="userNameText">{{ premiumUser.firstName }}</p>
+          <p class="titleText">{{ premiumUser.generalPromotedTitle }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="topText">
+      <p class="subTitleText">Categories</p>
+    </div>
+
+    <div class="categoriesContainer">
+      <div
+        v-for="category in categories"
+        :key="category.categoryID"
+        class="categoriesItem"
+      >
+        <p>{{ category.categoryName }}</p>
+      </div>
+    </div>
+
+    <div class="topText">
+      <p class="subTitleText">Top dawgs</p>
+      <p class="viewAllText">View all</p>
+    </div>
+
+    <div class="topDawgsSection">
+      <div
+        v-for="featuredServiceProvider in featuredServiceProviders"
+        :key="featuredServiceProvider._id"
+        class="topDawgItem"
+      >
+        <img
+          :src="featuredServiceProvider.image1"
+          alt="nihire featured services"
+        />
+
+        <div class="rightItems">
+          <div class="nameAndStars">
+            <p>{{ featuredServiceProvider.provider.firstName }}</p>
+          </div>
+
+          <p class="serviceNameText">
+            {{
+              featuredServiceProvider.service.serviceName.length <= 20
+                ? capitalize(featuredServiceProvider.service.serviceName)
+                : capitalize(
+                    featuredServiceProvider.service.serviceName.slice(0, 19) +
+                      "..."
+                  )
+            }}
+          </p>
+          <p class="smallText">{{ featuredServiceProvider.description }}</p>
+
+          <div class="locationAndPrice">
+            <p class="smallText locationText">
+              {{ featuredServiceProvider.provider.location }}
+            </p>
+            <p class="smallText rateText">{{ featuredServiceProvider.rate }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="topText">
+      <p class="subTitleText">Recently viewed</p>
+      <p class="viewAllText">View all</p>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
-  }
-}
+  name: "HomeView",
+  components: {},
+  data() {
+    return {
+      premiumUsers: [],
+      categories: [],
+      featuredServiceProviders: [],
+      noImage:
+        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    };
+  },
+  methods: {
+    capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    },
+  },
+  mounted() {
+    //get premium users
+    fetch("https://ni-hire-backend.herokuapp.com/user/featured-users")
+      .then((res) => res.json())
+      .then((data) => {
+        this.premiumUsers = data;
+      })
+      .catch((err) => console.log(err));
+
+    //get all categories
+    fetch(
+      "https://ni-hire-backend.herokuapp.com/app/service/get-all-categories"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        this.categories = data.categories;
+      })
+      .catch((err) => console.log(err));
+
+    //get featured service providers
+    fetch(
+      "https://ni-hire-backend.herokuapp.com/app/service-provider/get-featured"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        this.featuredServiceProviders = data;
+      })
+      .catch((err) => console.log(err));
+  },
+};
 </script>
+
+<style>
+.usersContainer {
+  width: 75%;
+  /* background: gray; */
+  float: right;
+  margin: 0 20px 0 0;
+}
+.topText {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 20px 20px 0;
+}
+.subTitleText {
+  font-weight: 800;
+}
+.viewAllText {
+  font-weight: 800;
+  color: tomato;
+  text-decoration-line: underline;
+}
+.topUsers {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 0 20px 0 0;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+  position: relative;
+}
+.featUser {
+  width: 200px;
+  background: rgb(239, 249, 255);
+  border-radius: 20px 20px 0 0;
+  margin: 0 20px 20px 0;
+  height: 280px;
+  box-shadow: rgb(224, 224, 224) 5px 5px 5px;
+  cursor: pointer;
+}
+.featUser img {
+  width: 200px;
+  height: 200px;
+  border-radius: 20px 20px 0 0;
+}
+.premiumUsersTextContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 0 0 10px;
+}
+.userNameText {
+  font-weight: 800;
+}
+.titleText {
+  color: rgb(133, 0, 131);
+  font-weight: 700;
+}
+.categoriesContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.categoriesItem {
+  width: 200px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(225, 225, 225);
+  margin: 0 20px 20px 0;
+  border-radius: 10px;
+  box-shadow: rgb(236, 236, 236) 5px 5px 5px;
+  cursor: pointer;
+}
+.topDawgsSection {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.topDawgItem {
+  height: 180px;
+  width: 450px;
+  border-radius: 0 20px 20px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: rgb(237, 251, 255);
+  margin: 0 20px 20px 0;
+  box-shadow: rgb(223, 223, 223) 5px 5px 5px;
+}
+.topDawgItem img {
+  height: 100%;
+  width: 180px;
+}
+.smallText {
+  font-size: 14px;
+  text-align: left;
+  margin: 10px 0 0 0;
+}
+.rightItems {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+}
+.locationAndPrice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.nameAndStars {
+}
+.locationText {
+  color: rgb(0, 164, 164);
+  font-weight: 800;
+}
+.rateText {
+  color: rgb(255, 123, 0);
+  font-weight: 800;
+}
+.serviceNameText {
+  color: rgb(138, 0, 166);
+  font-weight: 800;
+}
+.nameAndStars p {
+  font-weight: 800;
+}
+</style>
+

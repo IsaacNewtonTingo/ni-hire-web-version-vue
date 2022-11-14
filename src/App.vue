@@ -1,9 +1,11 @@
 <template>
-  <nav>
+  <!-- <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  </nav> -->
+
+  <div class="leftNav"></div>
+  <router-view />
 </template>
 
 <style>
@@ -13,6 +15,10 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+* {
+  padding: 0;
+  margin: 0;
 }
 
 nav {
@@ -26,5 +32,12 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+.leftNav {
+  width: 20%;
+  background: rgb(243, 253, 255);
+  height: 100%;
+  position: fixed;
+  box-shadow: rgb(238, 238, 238) 5px 5px 5px;
 }
 </style>
