@@ -51,7 +51,11 @@
         class="topDawgItem"
       >
         <img
-          :src="featuredServiceProvider.image1"
+          :src="
+            featuredServiceProvider.image1
+              ? featuredServiceProvider.image1
+              : noImage
+          "
           alt="nihire featured services"
           class="topDawgIMG"
         />
@@ -176,10 +180,10 @@ export default {
 }
 .featUser {
   width: 200px;
-  background: rgb(239, 249, 255);
+  background: white;
   border-radius: 20px 20px 0 0;
   margin: 0 20px 20px 0;
-  height: 280px;
+  height: 260px;
   box-shadow: rgb(224, 224, 224) 5px 5px 5px;
   cursor: pointer;
 }
@@ -192,14 +196,15 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 0 0 0 10px;
+  margin: 10px 0 0 10px;
 }
 .userNameText {
   font-weight: 800;
 }
 .titleText {
-  color: rgb(133, 0, 131);
   font-weight: 700;
+  color: rgb(146, 146, 146);
+  font-size: 12px;
 }
 .categoriesContainer {
   width: 100%;
@@ -238,7 +243,7 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background: rgb(237, 251, 255);
+  background: white;
   margin: 0 20px 20px 0;
   box-shadow: rgb(223, 223, 223) 5px 5px 5px;
   cursor: pointer;
@@ -248,7 +253,7 @@ export default {
   width: 180px;
 }
 .smallText {
-  font-size: 14px;
+  font-size: 12px;
   text-align: left;
   margin: 10px 0 0 0;
   color: rgb(115, 115, 115);
@@ -276,9 +281,9 @@ export default {
   font-weight: 800;
 }
 .serviceNameText {
-  color: rgb(138, 0, 166);
-  font-weight: 800;
+  font-weight: 700;
   font-size: 14px;
+  margin: 10px 0 0 0;
 }
 .nameAndStars p {
   font-weight: 800;
